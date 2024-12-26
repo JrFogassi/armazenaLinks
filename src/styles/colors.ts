@@ -6,6 +6,7 @@ export const colors = {
     },
 
     gray: {
-        grey11: "#1C1C1C"
+        grey11: "#1C1C1C",
+        Silver: "#C0C0C0"
     }
 }
