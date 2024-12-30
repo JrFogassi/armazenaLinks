@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
@@ -18,7 +18,20 @@ export default function Add() {
 
     //Função handle para identificar uma interação do usuário na aplicação
     function handleAdd(){
-        console.log({name, url})
+        if(!category){
+            return Alert.alert("Categoria", "Selecione a categoria")
+        }
+
+        if(!name.trim()){
+            return Alert.alert("Nome", "Informe o nome")
+        }
+
+        if(!url.trim()){
+            return Alert.alert("URL", "Informe a URL")
+        }
+
+
+        console.log({ category, name, url })
     }
 
     return (
@@ -36,7 +49,7 @@ export default function Add() {
 
             <View style={styles.form}>
                 <Input placeholder="Nome" onChangeText={setName}/>
-                <Input placeholder="Url" onChangeText={setUrl}/>
+                <Input placeholder="URL" onChangeText={setUrl}/>
                 <Button title="Adicionar" onPress={handleAdd}/>
             </View>         
         </View>
