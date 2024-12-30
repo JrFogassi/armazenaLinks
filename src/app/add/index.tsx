@@ -5,6 +5,7 @@ import { router } from "expo-router";
 
 import { styles } from "./styles";
 import { colors } from "@/styles/colors";
+import { linkStorage } from "@/storage/link-storage";
 
 import { Categories } from "@/components/categories";
 import { Input } from "@/components/input";
@@ -17,7 +18,8 @@ export default function Add() {
     const [url, setUrl] = useState("")
 
     //Função handle para identificar uma interação do usuário na aplicação
-    function handleAdd(){
+    async function handleAdd(){
+        try {
         if(!category){
             return Alert.alert("Categoria", "Selecione a categoria")
         }
@@ -30,8 +32,19 @@ export default function Add() {
             return Alert.alert("URL", "Informe a URL")
         }
 
+        await linkStorage.save({
+            id: new Date().getTime().toString(),
+            name,
+            url,
+            category
+        })
 
-        console.log({ category, name, url })
+        const data = await linkStorage.get()
+        console.log(data)
+    }   catch (error) {
+        Alert.alert("Erro", "Não foi possível salvar o link")
+        console.log(error)
+    }
     }
 
     return (
@@ -49,7 +62,7 @@ export default function Add() {
 
             <View style={styles.form}>
                 <Input placeholder="Nome" onChangeText={setName}/>
-                <Input placeholder="URL" onChangeText={setUrl}/>
+                <Input placeholder="URL" onChangeText={setUrl} autoCapitalize="none"/>
                 <Button title="Adicionar" onPress={handleAdd}/>
             </View>         
         </View>
