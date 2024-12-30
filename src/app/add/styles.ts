@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         marginBottom: 24,
     },
     title: {
-        color: colors.purple.Indigo,
+        color: colors.purple.BlueViolet,
         fontSize: 24,
         fontWeight: "600",
     },
@@ -22,5 +22,10 @@ export const styles = StyleSheet.create({
         color: colors.gray.Silver,
         fontSize: 14,
         paddingHorizontal: 24,
-    }
+    },
+    form: {
+        padding: 24,
+        gap: 16,
+        
+    },
 })

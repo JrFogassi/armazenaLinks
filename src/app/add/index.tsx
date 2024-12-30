@@ -6,13 +6,14 @@ import { styles } from "./styles";
 import { colors } from "@/styles/colors";
 
 import { Categories } from "@/components/categories";
+import { Input } from "@/components/input";
 
 export default function Add() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => router.back()}>
-                    <MaterialIcons name="arrow-back" size={32} color={colors.purple.Indigo}/>
+                    <MaterialIcons name="arrow-back" size={32} color={colors.purple.BlueViolet}/>
                 </TouchableOpacity>
 
                 <Text style={styles.title}>Novo</Text>
@@ -20,6 +21,11 @@ export default function Add() {
             
             <Text style={styles.label}>Selecione uma categoria</Text>
             <Categories />
+
+            <View style={styles.form}>
+                <Input placeholder="Nome" />
+                <Input placeholder="Url" />
+            </View>            
         </View>
     )
 }
