@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     modalContent: {
-        backgroundColor: colors.purple.BlueViolet,
+        backgroundColor: colors.purple.Purple,
         borderTopWidth: 1,
         borderTopColor: colors.gray.grey11,
         paddingBottom: 42,
@@ -67,4 +67,13 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         color: colors.gray.Silver
     },
+    modalFooter: {
+        flexDirection: "row",
+        marginTop: 32,
+        width: "100%",
+        justifyContent: "space-between",
+        borderTopWidth: 1,
+        borderTopColor: colors.gray.Silver,
+        paddingVertical: 14,
+    }
 })
