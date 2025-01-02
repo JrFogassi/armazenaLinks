@@ -2,7 +2,8 @@ import { useState, useCallback } from "react";
 import { 
     View, 
     Image, 
-    TouchableOpacity, 
+    TouchableOpacity,
+    Linking, 
     FlatList, 
     Modal, 
     Text, 
@@ -54,13 +55,20 @@ export default function Index(){
     }
     
     
-    function handleRemove() {
-        
+    function handleRemove() {        
             Alert.alert("Excluir", "Deseja realmente excluir?", [
                 { style: "cancel", text: "Não"},
                 { text: "Sim", onPress: linkRemove },
-            ])
-       
+            ])      
+    }
+
+    async function handleOpen() {
+        try {
+            await Linking.openURL(link.url)
+        } catch(error) {
+            Alert.alert("Link", "Não foi possível abrir o link")
+            console.log(error)
+        }
     }
 
     useFocusEffect(useCallback(() => {
@@ -113,9 +121,15 @@ export default function Index(){
                         <Text style={styles.modalLinkName}>{link.name}</Text>
                         <Text style={styles.modalUrl}>{link.url}</Text>
 
+
                         <View style={styles.modalFooter}>
-                            <Option name="Excluir" icon="delete" variant="secondary" onPress={handleRemove}/>
-                            <Option name="Abrir" icon="language" />
+                            <Option 
+                                name="Excluir" 
+                                icon="delete" 
+                                variant="secondary" 
+                                onPress={handleRemove}
+                                />
+                            <Option name="Abrir" icon="language" onPress={handleOpen}/>
                         </View>
                     </View>
                 </View>
